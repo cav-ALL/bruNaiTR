@@ -59,5 +59,15 @@ public class BrujaController : MonoBehaviour
             gameScript.WitchDialogues();
         }
     }
+
+    private void OnMouseEnter()
+    {
+        gameScript.pointerColor(0);
+    }
+
+    private void OnMouseExit()
+    {
+        gameScript.pointerColor(1);
+    }
 }
 

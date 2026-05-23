@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int index;
     [SerializeField] private float speedText;
     [SerializeField] private BrujaController witchStatickScript;
+    [SerializeField] private RawImage pointer;
+    [SerializeField] private Color[] colors = { Color.red, Color.white };
     void Start()
     {
         dialouguesText.text = string.Empty;
@@ -66,4 +70,10 @@ public class GameManager : MonoBehaviour
             index = 0;
         }
     }
+
+    public void pointerColor(int index)
+    {
+        pointer.color = colors[index];
+    }
+
 }
