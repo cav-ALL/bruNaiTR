@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.hauntedpsx.render-pipelines.psx": "https://github.com/pastasfuture/com.hauntedpsx.render-pipelines.psx.git",
     "com.unity.feature.cinematic": "1.0.0",
     "com.unity.feature.development": "1.0.1",
     "com.unity.polybrush": "1.1.8",
