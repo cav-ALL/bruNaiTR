@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Value: 1
   framebufferDither:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.539
   ditherSize:
     m_OverrideState: 1
     m_Value: 1
