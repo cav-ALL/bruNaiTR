@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,10 +29,10 @@ public class GameManager : MonoBehaviour
         if (objetosRecolectar >= 2)
         {
             Destroy(puerta.gameObject);
-            witchTrans.transform.position = newTransWitch.transform.position;
+            SceneManager.LoadScene(2);
         }
 
-        if (Input.GetButtonDown("Jump") && witchStatickScript.onMouse)
+        if (Input.GetMouseButtonDown(1) && witchStatickScript.onMouse)
         {
             if (dialouguesText.text == dialoguesWitch[index])
             {
