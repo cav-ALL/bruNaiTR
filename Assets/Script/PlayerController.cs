@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchSpeed = 2.5f;
     private float currentSpeed;
 
+    [Header("Mecánica de Salto")]
+    [SerializeField] private float jumpHeight = 2.5f; // Altura máxima del salto en unidades de Unity
+    [SerializeField] private float saltoStaminaCost = 15f; // Estamina que cuesta saltar
+
     [Header("Sistema de Estamina")]
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float staminaDrain = 25f;
@@ -53,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private float verticalVelocity;
 
+    // Propiedades públicas
     public bool IsRunning => isRunning;
     public bool IsCrouching => isCrouching;
     public float StaminaPercentage => currentStamina / maxStamina;
@@ -81,7 +86,6 @@ public class PlayerController : MonoBehaviour
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
         bool wantsToRun = Input.GetKey(KeyCode.LeftShift) && isMoving;
 
-        // Validar el estado de agotamiento estricto
         if (currentStamina <= 0 && !estaAgotado)
         {
             ActivarAgotamiento();
@@ -92,13 +96,12 @@ public class PlayerController : MonoBehaviour
             DesactivarAgotamiento();
         }
 
-        // Asignación limpia de velocidad según estado
         if (isCrouching)
         {
             isRunning = false;
             currentSpeed = crouchSpeed;
         }
-        else if (wantsToRun && !estaAgotado) // Mientras corras normal, NO entra aquí el estado agotado
+        else if (wantsToRun && !estaAgotado)
         {
             isRunning = true;
             currentSpeed = runSpeed;
@@ -120,14 +123,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // 3. MECÁNICA DE SALTO (Solo si está en el suelo, no está agachado y no está agotado)
+        if (Input.GetButtonDown("Jump") && charPlayer.isGrounded && !isCrouching && !estaAgotado)
+        {
+            // Ecuación física estándar para saltar basándose en la altura deseada: v = sqrt(h * -2 * g)
+            verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+
+            // Consumo de estamina por el esfuerzo físico del salto
+            currentStamina -= saltoStaminaCost;
+            cooldownTimer = staminaCooldown;
+        }
+
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
 
-        // 3. APLICAR LA ALTURA AL CHARACTER CONTROLLER
+        // 4. APLICAR LA ALTURA AL CHARACTER CONTROLLER
         float targetHeight = isCrouching ? crouchingHeight : standingHeight;
         charPlayer.height = Mathf.MoveTowards(charPlayer.height, targetHeight, crouchTransitionSpeed * Time.deltaTime);
         charPlayer.center = new Vector3(0, charPlayer.height / 2f, 0);
 
-        // 4. MOVIMIENTO
+        // 5. MOVIMIENTO Y GRAVEDAD
         float moveX = Input.GetAxis("Horizontal") * currentSpeed;
         float moveZ = Input.GetAxis("Vertical") * currentSpeed;
 
@@ -135,25 +149,28 @@ public class PlayerController : MonoBehaviour
 
         if (charPlayer.isGrounded)
         {
-            verticalVelocity = -0.5f;
+            // Si la velocidad vertical es menor a cero (cayendo o estático), la mantenemos baja para no perder el suelo
+            if (verticalVelocity < 0)
+            {
+                verticalVelocity = -0.5f;
+            }
         }
         else
         {
+            // Aplicar gravedad en el aire de forma continua
             verticalVelocity += Physics.gravity.y * Time.deltaTime;
         }
 
         move.y = verticalVelocity;
         charPlayer.Move(move * Time.deltaTime);
 
-        // 5. EJECUCIÓN DE LOS PASOS DINÁMICOS
+        // 6. EJECUCIÓN DE LOS PASOS DINÁMICOS
         ManejarPasosModulados();
     }
 
     private void ActivarAgotamiento()
     {
         estaAgotado = true;
-
-        // Apagamos los pasos de inmediato al caer exhausto
         audioSource.Stop();
 
         if (audioRespiracionFuerte != null && !audioSourceRespiracion.isPlaying)
@@ -176,13 +193,13 @@ public class PlayerController : MonoBehaviour
 
     private void ManejarPasosModulados()
     {
-        // Si está agotado (sin estamina), bloqueamos por completo los pasos
         if (estaAgotado)
         {
             timerPasos = cadenciaCaminar;
             return;
         }
 
+        // Modificación: Solo suena pasos si está tocando físicamente el suelo
         if (charPlayer.isGrounded && charPlayer.velocity.magnitude > 0.5f)
         {
             timerPasos += Time.deltaTime;

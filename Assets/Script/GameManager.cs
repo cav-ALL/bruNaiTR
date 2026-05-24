@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BrujaController witchStatickScript;
     [SerializeField] private RawImage pointer;
     [SerializeField] private Color[] colors = { Color.red, Color.white };
+    public int objetosRecolectar = 0;
+    [SerializeField] private GameObject puerta;
+    [SerializeField] private Transform witchTrans;
+    [SerializeField] private Transform newTransWitch;
     void Start()
     {
         dialouguesText.text = string.Empty;
@@ -21,6 +25,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (objetosRecolectar >= 2)
+        {
+            Destroy(puerta.gameObject);
+            witchTrans.transform.position = newTransWitch.transform.position;
+        }
+
         if (Input.GetButtonDown("Jump") && witchStatickScript.onMouse)
         {
             if (dialouguesText.text == dialoguesWitch[index])

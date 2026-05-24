@@ -48,7 +48,7 @@ MonoBehaviour:
     m_Value: 1
   drawDistance:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 40
 --- !u!114 &-4989973665629427686
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -89,7 +89,7 @@ MonoBehaviour:
     m_Value: 0
   distanceMax:
     m_OverrideState: 1
-    m_Value: 16.4
+    m_Value: 56.46
   fogFalloffCurve:
     m_OverrideState: 1
     m_Value: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
     m_Value: 1
   frameLimit:
     m_OverrideState: 1
-    m_Value: 24
+    m_Value: 30
   aspectMode:
     m_OverrideState: 1
     m_Value: 3
@@ -265,7 +265,7 @@ MonoBehaviour:
     m_Value: 0
   bloom:
     m_OverrideState: 1
-    m_Value: 0.0625
+    m_Value: 0.07
   grateMaskMode:
     m_OverrideState: 1
     m_Value: 0
