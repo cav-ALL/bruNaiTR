@@ -32,4 +32,5 @@ public class Objetos_a_recolectar : MonoBehaviour
     {
         gameScript.pointerColor(1);
     }
+
 }

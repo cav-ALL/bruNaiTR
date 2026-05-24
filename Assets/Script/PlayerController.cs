@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float saltoStaminaCost = 15f; // Estamina que cuesta saltar
 
     [Header("Sistema de Estamina")]
-    [SerializeField] private float maxStamina = 100f;
-    [SerializeField] private float staminaDrain = 25f;
-    [SerializeField] private float staminaRegen = 15f;
+    [SerializeField] private float maxStamina = 200f;
+    [SerializeField] private float staminaDrain = 10f;
+    [SerializeField] private float staminaRegen = 25f;
     [SerializeField] private float staminaCooldown = 1.5f;
 
     private float currentStamina;
