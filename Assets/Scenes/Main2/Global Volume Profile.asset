@@ -89,10 +89,10 @@ MonoBehaviour:
     m_Value: 0
   distanceMax:
     m_OverrideState: 1
-    m_Value: 16.4
+    m_Value: 18
   fogFalloffCurve:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.57
   heightFalloffEnabled:
     m_OverrideState: 1
     m_Value: 0
@@ -151,6 +151,40 @@ MonoBehaviour:
   heightMaxLayer1:
     m_OverrideState: 1
     m_Value: 10
+--- !u!114 &-4673651928304383011
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad71758d66b75b45a6157133f3e6024, type: 3}
+  m_Name: AccumulationMotionBlurVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  weight:
+    m_OverrideState: 1
+    m_Value: 0.29
+  vignette:
+    m_OverrideState: 1
+    m_Value: 0
+  dither:
+    m_OverrideState: 1
+    m_Value: 1
+  zoom:
+    m_OverrideState: 1
+    m_Value: 0.01
+  zoomDither:
+    m_OverrideState: 1
+    m_Value: 0
+  anisotropy:
+    m_OverrideState: 1
+    m_Value: 0
+  applyToUIOverlay:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-2061171921353275662
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -207,6 +241,7 @@ MonoBehaviour:
   - {fileID: -4989973665629427686}
   - {fileID: -2061171921353275662}
   - {fileID: 3342622307274119202}
+  - {fileID: -4673651928304383011}
 --- !u!114 &3342622307274119202
 MonoBehaviour:
   m_ObjectHideFlags: 3
