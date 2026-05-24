@@ -33,4 +33,8 @@ public class Objetos_a_recolectar : MonoBehaviour
         gameScript.pointerColor(1);
     }
 
+    private void OnDestroy()
+    {
+        gameScript.pointerColor(1);
+    }
 }
