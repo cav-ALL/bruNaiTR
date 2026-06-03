@@ -10,12 +10,13 @@ public class WITCHFINAL : MonoBehaviour
     [SerializeField] private GameObject[] ToDestroy;
     [SerializeField] private GameObject screamer;
 
-    [SerializeField] private LayerMask player;
     [SerializeField] private float[] distance;
     [SerializeField] private bool patroll;
     [SerializeField] private bool detected;
+    [SerializeField] private int indexPos;
     void Start()
     {
+        indexPos = 0;
         Patroll();
     }
 
@@ -26,23 +27,21 @@ public class WITCHFINAL : MonoBehaviour
         if (patroll)
         {
             Patroll();
+            if (playDis <= distance[0])
+            {
+                patroll = false;
+                detected = true;
+            }
         }
-
-        if (playDis <= distance[0])
-        {
-            patroll = false;
-            detected = true;
-        }
-
-        if (detected)
+      
+        else if (detected)
         {
             Detected();
-        }
-
-        if (playDis >= distance[1]&&detected)
-        {
-            patroll = true;
-            detected = false;
+            if (playDis >= distance[1])
+            {
+                patroll = true;
+                detected = false;
+            }
         }
     }
 
@@ -60,17 +59,17 @@ public class WITCHFINAL : MonoBehaviour
 
     private void Patroll()
     {
-        for(int i = 0; i < Patrulla.Length; i++)
-        {
-            float takeDis = Vector3.Distance(transform.position, Patrulla[i].position);
-            if (takeDis > 0.5f)
-            {
-                agent.destination = Patrulla[i].position;
-            }
 
-            if (i <= Patrulla.Length - 1)
+        agent.destination = Patrulla[indexPos].transform.position;
+
+        float takeDis = Vector3.Distance(transform.position, Patrulla[indexPos].position);
+
+        if (takeDis <= 0.5f)
+        {
+            indexPos++;
+            if (indexPos >= Patrulla.Length)
             {
-                i = 0;
+                indexPos = 0;
             }
         }
     }
