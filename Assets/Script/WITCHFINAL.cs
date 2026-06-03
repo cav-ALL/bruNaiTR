@@ -11,9 +11,9 @@ public class WITCHFINAL : MonoBehaviour
     [SerializeField] private GameObject screamer;
 
     [SerializeField] private LayerMask player;
-    [SerializeField] private float[] radius;
+    [SerializeField] private float[] distance;
     [SerializeField] private bool patroll;
-    [SerializeField] private bool objective;
+    [SerializeField] private bool detected;
     void Start()
     {
         Patroll();
@@ -22,7 +22,28 @@ public class WITCHFINAL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float playDis = Vector3.Distance(transform.position,playerTR.transform.position);
+        if (patroll)
+        {
+            Patroll();
+        }
+
+        if (playDis <= distance[0])
+        {
+            patroll = false;
+            detected = true;
+        }
+
+        if (detected)
+        {
+            Detected();
+        }
+
+        if (playDis >= distance[1]&&detected)
+        {
+            patroll = true;
+            detected = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,11 +67,16 @@ public class WITCHFINAL : MonoBehaviour
             {
                 agent.destination = Patrulla[i].position;
             }
-            
+
             if (i <= Patrulla.Length - 1)
             {
                 i = 0;
             }
         }
+    }
+
+    public void Detected()
+    {
+        agent.destination = playerTR.transform.position;
     }
 }
