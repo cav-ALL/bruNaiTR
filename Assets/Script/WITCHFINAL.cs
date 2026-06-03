@@ -64,7 +64,7 @@ public class WITCHFINAL : MonoBehaviour
 
         float takeDis = Vector3.Distance(transform.position, Patrulla[indexPos].position);
 
-        if (takeDis <= 0.5f)
+        if (takeDis <= 1f)
         {
             indexPos++;
             if (indexPos >= Patrulla.Length)
