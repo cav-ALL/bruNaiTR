@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private CharacterController charPlayer;
+
 
     [Header("Configuración de Velocidad")]
     [SerializeField] private float walkSpeed = 5f;
@@ -238,5 +240,6 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(sonidosDePasos, volumen);
         }
     }
+
 }
 
