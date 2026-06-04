@@ -207,6 +207,41 @@ MonoBehaviour:
   - {fileID: -4989973665629427686}
   - {fileID: -2061171921353275662}
   - {fileID: 3342622307274119202}
+  - {fileID: 3002170021495643669}
+--- !u!114 &3002170021495643669
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad71758d66b75b45a6157133f3e6024, type: 3}
+  m_Name: AccumulationMotionBlurVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  weight:
+    m_OverrideState: 0
+    m_Value: 0
+  vignette:
+    m_OverrideState: 0
+    m_Value: 0
+  dither:
+    m_OverrideState: 0
+    m_Value: 1
+  zoom:
+    m_OverrideState: 0
+    m_Value: 0
+  zoomDither:
+    m_OverrideState: 0
+    m_Value: 0
+  anisotropy:
+    m_OverrideState: 0
+    m_Value: 0
+  applyToUIOverlay:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &3342622307274119202
 MonoBehaviour:
   m_ObjectHideFlags: 3

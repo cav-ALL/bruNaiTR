@@ -77,7 +77,7 @@ MonoBehaviour:
     m_Value: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.4716981, g: 0.39382342, b: 0.39382342, a: 1}
   precisionAlpha:
     m_OverrideState: 1
     m_Value: 0.341
@@ -93,10 +93,10 @@ MonoBehaviour:
     m_Value: 0
   distanceMax:
     m_OverrideState: 1
-    m_Value: 56.46
+    m_Value: 10
   fogFalloffCurve:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -0.069
   heightFalloffEnabled:
     m_OverrideState: 1
     m_Value: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   active: 1
   weight:
     m_OverrideState: 1
-    m_Value: 0.6
+    m_Value: 0.8
   vignette:
     m_OverrideState: 1
     m_Value: 0.05
@@ -297,7 +297,7 @@ MonoBehaviour:
     m_Value: 1
   drawDistance:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 20
 --- !u!114 &7972867232322728340
 MonoBehaviour:
   m_ObjectHideFlags: 3

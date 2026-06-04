@@ -14,6 +14,13 @@ public class WITCHFINAL : MonoBehaviour
     [SerializeField] private bool patroll;
     [SerializeField] private bool detected;
     [SerializeField] private int indexPos;
+
+    [SerializeField] private GameObject volumeOff;
+    [SerializeField] private GameObject horribleSphere;
+    [SerializeField] private AudioSource mainCt;
+    [SerializeField] private AudioClip chaseTheme;
+    [SerializeField] private AudioSource enemySource;
+    [SerializeField] private AudioClip mainTheme;
     void Start()
     {
         indexPos = 0;
@@ -41,6 +48,7 @@ public class WITCHFINAL : MonoBehaviour
             {
                 patroll = true;
                 detected = false;
+                volumeOff.SetActive(true);
             }
         }
     }
@@ -59,7 +67,11 @@ public class WITCHFINAL : MonoBehaviour
 
     private void Patroll()
     {
-
+        if (volumeOff.activeSelf == false)
+        {
+            horribleSphere.SetActive(true);
+        }
+        
         agent.destination = Patrulla[indexPos].transform.position;
 
         float takeDis = Vector3.Distance(transform.position, Patrulla[indexPos].position);
@@ -77,5 +89,10 @@ public class WITCHFINAL : MonoBehaviour
     public void Detected()
     {
         agent.destination = playerTR.transform.position;
+        if (volumeOff.activeSelf)
+        {
+            volumeOff.SetActive(false);
+            horribleSphere.SetActive(false);
+        }
     }
 }
