@@ -14,41 +14,72 @@ public class WITCHFINAL : MonoBehaviour
     [SerializeField] private bool patroll;
     [SerializeField] private bool detected;
     [SerializeField] private int indexPos;
+    [SerializeField] Transform SpawnPoint;
 
     [SerializeField] private GameObject volumeOff;
     [SerializeField] private GameObject horribleSphere;
-    [SerializeField] private AudioSource mainCt;
-    [SerializeField] private AudioClip chaseTheme;
-    [SerializeField] private AudioSource enemySource;
-    [SerializeField] private AudioClip mainTheme;
+
     void Start()
     {
         indexPos = 0;
-        Patroll();
+
+        if (agent != null)
+        {
+            agent.Warp(SpawnPoint.position);
+        }
+        else
+        {
+            transform.position = SpawnPoint.position;
+        }
+
+        patroll = true;
+        detected = false;
+
+        ActualizarDestinoPatrulla();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float playDis = Vector3.Distance(transform.position,playerTR.transform.position);
+        float playDis = Vector3.Distance(transform.position, playerTR.position);
+
         if (patroll)
         {
-            Patroll();
+            float takeDis = Vector3.Distance(transform.position, Patrulla[indexPos].position);
+
+            if (takeDis <= 1.5f)
+            {
+                indexPos++;
+                if (indexPos >= Patrulla.Length)
+                {
+                    indexPos = 0;
+                }
+                ActualizarDestinoPatrulla();
+            }
+
             if (playDis <= distance[0])
             {
                 patroll = false;
                 detected = true;
+                horribleSphere.SetActive(false);
             }
         }
-      
         else if (detected)
         {
-            Detected();
+            agent.destination = playerTR.position;
+
+            if (volumeOff.activeSelf)
+            {
+                volumeOff.SetActive(false);
+                horribleSphere.SetActive(false);
+            }
+
             if (playDis >= distance[1])
             {
                 patroll = true;
                 detected = false;
                 volumeOff.SetActive(true);
+                horribleSphere.SetActive(true);
+                ActualizarDestinoPatrulla();
             }
         }
     }
@@ -60,39 +91,21 @@ public class WITCHFINAL : MonoBehaviour
             screamer.SetActive(true);
             for (int i = 0; i < ToDestroy.Length; i++)
             {
-                Destroy(ToDestroy[i]);
+                if (ToDestroy[i] != null)
+                {
+                    Destroy(ToDestroy[i]);
+                }
             }
         }
     }
 
-    private void Patroll()
+    private void ActualizarDestinoPatrulla()
     {
         if (volumeOff.activeSelf == false)
         {
             horribleSphere.SetActive(true);
         }
-        
-        agent.destination = Patrulla[indexPos].transform.position;
 
-        float takeDis = Vector3.Distance(transform.position, Patrulla[indexPos].position);
-
-        if (takeDis <= 1f)
-        {
-            indexPos++;
-            if (indexPos >= Patrulla.Length)
-            {
-                indexPos = 0;
-            }
-        }
-    }
-
-    public void Detected()
-    {
-        agent.destination = playerTR.transform.position;
-        if (volumeOff.activeSelf)
-        {
-            volumeOff.SetActive(false);
-            horribleSphere.SetActive(false);
-        }
+        agent.destination = Patrulla[indexPos].position;
     }
 }

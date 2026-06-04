@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RawImage pointer;
     [SerializeField] private Color[] colors = { Color.red, Color.white };
     public int objetosRecolectar = 0;
-    [SerializeField] private GameObject puerta;
+    [SerializeField] private GameObject finalwitch;
+    [SerializeField] private GameObject witch;
+
+
     [SerializeField] private Transform witchTrans;
     [SerializeField] private Transform newTransWitch;
     void Start()
@@ -26,10 +29,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (objetosRecolectar >= 2)
+        if (objetosRecolectar == 1)
         {
-            Destroy(puerta.gameObject);
-            SceneManager.LoadScene(2);
+            finalwitch.SetActive(true);
+            Destroy(witch);
         }
 
         if (Input.GetMouseButtonDown(1) && witchStatickScript.onMouse)
