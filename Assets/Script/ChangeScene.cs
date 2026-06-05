@@ -8,6 +8,7 @@ public class ChangeScene : MonoBehaviour
     [Header("Configuración del Screamer")]
     [Tooltip("El número de la escena de Game Over en el Build Settings")]
     public int gameOverSceneIndex = 3;
+    [SerializeField] private GameManager manager;
 
     [Tooltip("Tiempo que el screamer estará en pantalla antes de cambiar de escena")]
     public float waitTime = 2f;
@@ -27,7 +28,9 @@ public class ChangeScene : MonoBehaviour
         // 2. Esperamos los 10 segundos exactos.
         yield return new WaitForSeconds(waitTime);
 
-        // 3. Cambiamos a la escena de Game Over.
-        SceneManager.LoadScene(gameOverSceneIndex);
+        if(manager.objetosRecolectar>=2)
+            SceneManager.LoadScene(5);
+        else
+            SceneManager.LoadScene(4);
     }
 }

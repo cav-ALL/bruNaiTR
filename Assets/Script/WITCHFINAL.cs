@@ -19,6 +19,7 @@ public class WITCHFINAL : MonoBehaviour
     [Space(10)]
     [SerializeField] private AudioSource musicaPersecucion;
     [SerializeField] private AudioClip clipMusicaPersecucion;
+    [SerializeField] private AudioClip clipMusicaPersecucion2;
 
     [Header("Puntos de Ruta")]
     [SerializeField] private Transform SpawnPoint;
@@ -73,6 +74,8 @@ public class WITCHFINAL : MonoBehaviour
         if (!witchMap)
         {
             agent.destination = playerTR.position;
+            musicaPersecucion.clip = clipMusicaPersecucion2;
+            ActivarAudiosPersecucion();
             return;
         }
 
@@ -87,12 +90,13 @@ public class WITCHFINAL : MonoBehaviour
         {
             if (estadoActual != EstadoBruja.PersecucionLejana)
             {
-                if (estadoActual == EstadoBruja.Patrullando) ActivarAudiosPersecucion();
+                if (estadoActual == EstadoBruja.Patrullando) DesactivarAudiosPersecucion();
 
                 estadoActual = EstadoBruja.PersecucionLejana;
                 agent.speed = witchSpeedD;
 
-                if (volumeOff != null) volumeOff.SetActive(true);
+                if(ManagerScript.objetosRecolectar!=2)
+                    if (volumeOff != null) volumeOff.SetActive(true);
                 if (horribleSphere != null) horribleSphere.SetActive(false);
             }
         }

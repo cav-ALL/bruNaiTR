@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
             player.transform.position = newPlayTrans.transform.position;
             player.transform.rotation = newPlayTrans.transform.rotation;
             objectToActiveODeactive[0].SetActive(false);
-            objectToActiveODeactive[1].SetActive(false);
+            Destroy(objectToActiveODeactive[1]);
+            Destroy(objectToActiveODeactive[4]);
             objectToActiveODeactive[2].SetActive(true);
             objectToActiveODeactive[3].SetActive(true);
             objetosRecolectar++;

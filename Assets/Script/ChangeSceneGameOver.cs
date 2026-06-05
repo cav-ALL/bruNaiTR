@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChangeSceneGameOver : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private int scene;
     void Start()
     {
         
@@ -14,6 +14,6 @@ public class ChangeSceneGameOver : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(scene);
     }
 }
