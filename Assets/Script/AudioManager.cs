@@ -5,18 +5,20 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+
+    [SerializeField] private float volum;
     
     public void Awake()
     {
         instance = this;
     }
 
-    public void PlaySFX(AudioClip audio, float volume = 1f)
+    public void PlaySFX(AudioClip audio, float volume = 0.5f)
     {
         StartCoroutine(PlaySFXCoroutine(audio, volume));
     }
 
-    IEnumerator PlaySFXCoroutine(AudioClip audio, float volume = 1f)
+    IEnumerator PlaySFXCoroutine(AudioClip audio, float volume = 0.5f)
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audio;

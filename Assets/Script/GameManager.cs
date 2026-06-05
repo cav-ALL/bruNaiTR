@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform witchTrans;
     [SerializeField] private Transform newTransWitch;
+
+    //final part
+
+    [SerializeField] private Transform newPlayTrans;
+    [SerializeField] private GameObject[] objectToActiveODeactive;
+    [SerializeField] private GameObject player;
     void Start()
     {
         dialouguesText.text = string.Empty;
@@ -34,7 +40,16 @@ public class GameManager : MonoBehaviour
             finalwitch.SetActive(true);
             Destroy(witch);
         }
-
+        else if(objetosRecolectar == 2)
+        {
+            player.transform.position = newPlayTrans.transform.position;
+            player.transform.rotation = newPlayTrans.transform.rotation;
+            objectToActiveODeactive[0].SetActive(false);
+            objectToActiveODeactive[1].SetActive(false);
+            objectToActiveODeactive[2].SetActive(true);
+            objectToActiveODeactive[3].SetActive(true);
+            objetosRecolectar++;
+        }
         if (Input.GetMouseButtonDown(1) && witchStatickScript.onMouse)
         {
             if (dialouguesText.text == dialoguesWitch[index])

@@ -1,6 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7438916227844410429
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume Profile 6
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 6964841711069249972}
+  - {fileID: 7554471406251310204}
+  - {fileID: 2934614249576199596}
+  - {fileID: 1251008519712524501}
+  - {fileID: 864886989224692306}
+  - {fileID: 7651358635574586423}
+  - {fileID: 4382943981840267893}
+--- !u!114 &864886989224692306
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,47 +29,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bffa9ddd307306479a0e3689eb72441, type: 3}
-  m_Name: PrecisionVolume
+  m_Script: {fileID: 11500000, guid: eb00c03fccc953a4387732e1392ffcf8, type: 3}
+  m_Name: CameraVolume
   m_EditorClassIdentifier: 
   active: 1
-  geometryEnabled:
+  isFrameLimitEnabled:
     m_OverrideState: 1
     m_Value: 1
-  geometry:
+  frameLimit:
     m_OverrideState: 1
-    m_Value: 0.619
-  geometryPushbackEnabled:
+    m_Value: 30
+  aspectMode:
     m_OverrideState: 1
-    m_Value: 0
-  geometryPushbackMinMax:
+    m_Value: 3
+  targetRasterizationResolutionWidth:
     m_OverrideState: 1
-    m_Value: {x: 0, y: 1}
-  color:
+    m_Value: 256
+  targetRasterizationResolutionHeight:
     m_OverrideState: 1
-    m_Value: 0.566
-  chroma:
-    m_OverrideState: 1
-    m_Value: 0.051
-  alpha:
-    m_OverrideState: 1
-    m_Value: 0.985
-  affineTextureWarping:
+    m_Value: 224
+  isDepthBufferEnabled:
     m_OverrideState: 1
     m_Value: 1
-  framebufferDither:
-    m_OverrideState: 1
-    m_Value: 0.539
-  ditherSize:
+  isClearDepthAfterBackgroundEnabled:
     m_OverrideState: 1
     m_Value: 1
-  drawDistanceFalloffMode:
+  isClearDepthBeforeUIEnabled:
     m_OverrideState: 1
     m_Value: 1
-  drawDistance:
-    m_OverrideState: 1
-    m_Value: 40
---- !u!114 &-4989973665629427686
+--- !u!114 &1251008519712524501
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +81,7 @@ MonoBehaviour:
     m_Value: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   precisionAlpha:
     m_OverrideState: 1
     m_Value: 0.341
@@ -89,10 +97,10 @@ MonoBehaviour:
     m_Value: 0
   distanceMax:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 10
   fogFalloffCurve:
     m_OverrideState: 1
-    m_Value: 0.666
+    m_Value: -0.069
   heightFalloffEnabled:
     m_OverrideState: 1
     m_Value: 0
@@ -151,7 +159,7 @@ MonoBehaviour:
   heightMaxLayer1:
     m_OverrideState: 1
     m_Value: 10
---- !u!114 &-2486326874193550948
+--- !u!114 &2934614249576199596
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,129 +168,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdadb30f615c5d5499a6de3fe4216ef6, type: 3}
-  m_Name: SkyVolume
+  m_Script: {fileID: 11500000, guid: 4bffa9ddd307306479a0e3689eb72441, type: 3}
+  m_Name: PrecisionVolume
   m_EditorClassIdentifier: 
   active: 1
-  skyMode:
-    m_OverrideState: 0
-    m_Value: 0
-  framebufferDitherWeight:
-    m_OverrideState: 0
-    m_Value: 1
-  skyRotation:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  textureFilterMode:
-    m_OverrideState: 0
-    m_Value: 0
-  skyboxTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  tiledLayersSkyHeightScale:
-    m_OverrideState: 0
-    m_Value: 0.25
-  tiledLayersSkyHorizonOffset:
-    m_OverrideState: 0
-    m_Value: 0
-  tiledLayersSkyColorLayer0:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  tiledLayersSkyTextureLayer0:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  tiledLayersSkyTextureScaleOffsetLayer0:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 0, w: 0}
-  tiledLayersSkyRotationLayer0:
-    m_OverrideState: 0
-    m_Value: 0
-  tiledLayersSkyScrollScaleLayer0:
-    m_OverrideState: 0
-    m_Value: {x: 0.125, y: 0.125}
-  tiledLayersSkyScrollRotationLayer0:
-    m_OverrideState: 0
-    m_Value: 0
-  tiledLayersSkyColorLayer1:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  tiledLayersSkyTextureLayer1:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  tiledLayersSkyTextureScaleOffsetLayer1:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 0, w: 0}
-  tiledLayersSkyRotationLayer1:
-    m_OverrideState: 0
-    m_Value: 0
-  tiledLayersSkyScrollScaleLayer1:
-    m_OverrideState: 0
-    m_Value: {x: -0.25, y: -0.25}
-  tiledLayersSkyScrollRotationLayer1:
-    m_OverrideState: 0
-    m_Value: 0
---- !u!114 &-2061171921353275662
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb00c03fccc953a4387732e1392ffcf8, type: 3}
-  m_Name: CameraVolume
-  m_EditorClassIdentifier: 
-  active: 1
-  isFrameLimitEnabled:
+  geometryEnabled:
     m_OverrideState: 1
     m_Value: 1
-  frameLimit:
+  geometry:
     m_OverrideState: 1
-    m_Value: 30
-  aspectMode:
+    m_Value: 0.73
+  geometryPushbackEnabled:
     m_OverrideState: 1
-    m_Value: 3
-  targetRasterizationResolutionWidth:
+    m_Value: 0
+  geometryPushbackMinMax:
     m_OverrideState: 1
-    m_Value: 256
-  targetRasterizationResolutionHeight:
+    m_Value: {x: 0, y: 1}
+  color:
     m_OverrideState: 1
-    m_Value: 224
-  isDepthBufferEnabled:
+    m_Value: 0.566
+  chroma:
+    m_OverrideState: 1
+    m_Value: 0.051
+  alpha:
+    m_OverrideState: 1
+    m_Value: 0.985
+  affineTextureWarping:
     m_OverrideState: 1
     m_Value: 1
-  isClearDepthAfterBackgroundEnabled:
+  framebufferDither:
+    m_OverrideState: 1
+    m_Value: 0.539
+  ditherSize:
     m_OverrideState: 1
     m_Value: 1
-  isClearDepthBeforeUIEnabled:
+  drawDistanceFalloffMode:
     m_OverrideState: 1
     m_Value: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume Profile
-  m_EditorClassIdentifier: 
-  components:
-  - {fileID: 7283987380763242942}
-  - {fileID: 6964100185581842850}
-  - {fileID: -7438916227844410429}
-  - {fileID: -4989973665629427686}
-  - {fileID: -2061171921353275662}
-  - {fileID: 3342622307274119202}
-  - {fileID: 3002170021495643669}
-  - {fileID: -2486326874193550948}
---- !u!114 &3002170021495643669
+  drawDistance:
+    m_OverrideState: 1
+    m_Value: 20
+--- !u!114 &4382943981840267893
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,27 +222,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   weight:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.8
   vignette:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.05
   dither:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   zoom:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.32
   zoomDither:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   anisotropy:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   applyToUIOverlay:
-    m_OverrideState: 0
-    m_Value: 0
---- !u!114 &3342622307274119202
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &6964841711069249972
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,38 +251,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac4315c5d81c1274fb8120ba49e62c21, type: 3}
-  m_Name: LightingVolume
+  m_Script: {fileID: 11500000, guid: 74f7b4b43d392da4aa0edc7aa47211ca, type: 3}
+  m_Name: QualityOverrideVolume
   m_EditorClassIdentifier: 
   active: 1
-  lightingIsEnabled:
+  isPSXQualityEnabled:
     m_OverrideState: 1
     m_Value: 1
-  bakedLightingMultiplier:
-    m_OverrideState: 1
-    m_Value: 1
-  vertexColorLightingMultiplier:
-    m_OverrideState: 1
-    m_Value: 0
-  dynamicLightingMultiplier:
-    m_OverrideState: 1
-    m_Value: 0.09
-  dynamicLightsMaxCount:
-    m_OverrideState: 1
-    m_Value: 1
-  dynamicLightsMaxPerObjectCount:
-    m_OverrideState: 1
-    m_Value: 1
-  lightingClampMode:
-    m_OverrideState: 1
-    m_Value: 0
-  lightingClamp:
-    m_OverrideState: 1
-    m_Value: 1
-  lightingClampSharpness:
-    m_OverrideState: 1
-    m_Value: 0
---- !u!114 &6964100185581842850
+--- !u!114 &7554471406251310204
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,7 +320,7 @@ MonoBehaviour:
   vignette:
     m_OverrideState: 1
     m_Value: 0.401
---- !u!114 &7283987380763242942
+--- !u!114 &7651358635574586423
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -427,10 +329,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f7b4b43d392da4aa0edc7aa47211ca, type: 3}
-  m_Name: QualityOverrideVolume
+  m_Script: {fileID: 11500000, guid: ac4315c5d81c1274fb8120ba49e62c21, type: 3}
+  m_Name: LightingVolume
   m_EditorClassIdentifier: 
   active: 1
-  isPSXQualityEnabled:
+  lightingIsEnabled:
     m_OverrideState: 1
     m_Value: 1
+  bakedLightingMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  vertexColorLightingMultiplier:
+    m_OverrideState: 1
+    m_Value: 0
+  dynamicLightingMultiplier:
+    m_OverrideState: 1
+    m_Value: 0.09
+  dynamicLightsMaxCount:
+    m_OverrideState: 1
+    m_Value: 1
+  dynamicLightsMaxPerObjectCount:
+    m_OverrideState: 1
+    m_Value: 1
+  lightingClampMode:
+    m_OverrideState: 1
+    m_Value: 0
+  lightingClamp:
+    m_OverrideState: 1
+    m_Value: 1
+  lightingClampSharpness:
+    m_OverrideState: 1
+    m_Value: 0
