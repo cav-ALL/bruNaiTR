@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 public class WITCHFINAL : MonoBehaviour
 {
-    // Definimos los 3 estados lógicos de la bruja
     private enum EstadoBruja { Patrullando, PersecucionCercana, PersecucionLejana }
     [Header("Estado Actual")]
     [SerializeField] private EstadoBruja estadoActual = EstadoBruja.Patrullando;
@@ -14,24 +13,26 @@ public class WITCHFINAL : MonoBehaviour
     [SerializeField] private Transform playerTR;
     [SerializeField] private Animator witchAnim;
 
+    [Header("Configuración de Audio (Fuentes y Clips)")]
+    [SerializeField] private AudioSource audioDeteccion;
+    [SerializeField] private AudioClip clipDeteccion;
+    [Space(10)]
+    [SerializeField] private AudioSource musicaPersecucion;
+    [SerializeField] private AudioClip clipMusicaPersecucion;
+
     [Header("Puntos de Ruta")]
     [SerializeField] private Transform SpawnPoint;
     [SerializeField] private Transform[] Patrulla;
     private int indexPos;
 
     [Header("Configuración de los 3 Rangos")]
-    [Tooltip("Si el jugador está a esta distancia o menos, la bruja lo detecta y lo persigue.")]
     [SerializeField] private float rangoDeteccionCercana = 5f;
-
-    [Tooltip("Distancia intermedia donde la bruja ignorará al jugador y se mantendrá patrullando.")]
     [SerializeField] private float rangoPatrullaNormal = 15f;
-
-    [Tooltip("Si el jugador se aleja más que esta distancia, la bruja dejará la patrulla para perseguirlo de lejos.")]
     [SerializeField] private float rangoPersecucionLejana = 25f;
 
     [Header("Velocidades")]
-    [SerializeField] private float witchSpeedP; // Velocidad de patrulla
-    [SerializeField] private float witchSpeedD; // Velocidad de persecución
+    [SerializeField] private float witchSpeedP;
+    [SerializeField] private float witchSpeedD;
 
     [Header("Efectos y Escenario")]
     [SerializeField] private GameObject volumeOff;
@@ -43,6 +44,9 @@ public class WITCHFINAL : MonoBehaviour
 
     void Start()
     {
+        // Configuración y asignación de audio por código para evitar errores
+        AsignarClipsDeAudio();
+
         if (witchMap)
         {
             indexPos = 0;
@@ -61,7 +65,6 @@ public class WITCHFINAL : MonoBehaviour
 
     void Update()
     {
-        // Actualizar la animación con la velocidad física del NavMesh
         if (witchAnim != null && agent != null)
         {
             witchAnim.SetFloat("Speed", agent.velocity.magnitude);
@@ -79,24 +82,27 @@ public class WITCHFINAL : MonoBehaviour
         // MAQUINA DE ESTADOS: EVALUACIÓN DE DISTANCIAS
         // =================================================================
 
-        // RANGO 3: El jugador está DEMASIADO lejos, modo persecución lejana para mantener la tensión
+        // RANGO 3: Persecución Lejana
         if (playDis >= rangoPersecucionLejana)
         {
             if (estadoActual != EstadoBruja.PersecucionLejana)
             {
+                if (estadoActual == EstadoBruja.Patrullando) ActivarAudiosPersecucion();
+
                 estadoActual = EstadoBruja.PersecucionLejana;
                 agent.speed = witchSpeedD;
 
-                // Apagamos esferas/volúmenes de patrulla mientras corre hacia ti
                 if (volumeOff != null) volumeOff.SetActive(false);
                 if (horribleSphere != null) horribleSphere.SetActive(false);
             }
         }
-        // RANGO 1: El jugador está DEMASIADO cerca, detección y persecución mortal
+        // RANGO 1: Persecución Cercana
         else if (playDis <= rangoDeteccionCercana)
         {
             if (estadoActual != EstadoBruja.PersecucionCercana)
             {
+                if (estadoActual == EstadoBruja.Patrullando) ActivarAudiosPersecucion();
+
                 estadoActual = EstadoBruja.PersecucionCercana;
                 agent.speed = witchSpeedD;
 
@@ -104,19 +110,19 @@ public class WITCHFINAL : MonoBehaviour
                 if (horribleSphere != null) horribleSphere.SetActive(false);
             }
         }
-        // RANGO 2: El jugador está en la zona media segura, la bruja patrulla de forma normal
+        // RANGO 2: Zona media (Patrulla)
         else
         {
-            // Si la bruja cambia desde una persecución hacia el estado de patrulla de vuelta
             if (estadoActual != EstadoBruja.Patrullando)
             {
+                DesactivarAudiosPersecucion();
+
                 estadoActual = EstadoBruja.Patrullando;
                 agent.speed = witchSpeedP;
 
                 if (volumeOff != null) volumeOff.SetActive(true);
                 if (horribleSphere != null) horribleSphere.SetActive(true);
 
-                // IMPORTANTE: Busca el punto de ruta más cercano a su posición actual para retomar la ruta de forma fluida
                 indexPos = ObtenerPuntoPatrullaMasCercano();
                 ActualizarDestinoPatrulla();
             }
@@ -130,7 +136,6 @@ public class WITCHFINAL : MonoBehaviour
             case EstadoBruja.Patrullando:
                 float takeDis = Vector3.Distance(transform.position, Patrulla[indexPos].position);
 
-                // Si llega a un nodo de patrulla, avanza al siguiente
                 if (takeDis <= 1.5f)
                 {
                     indexPos = (indexPos + 1) % Patrulla.Length;
@@ -140,9 +145,57 @@ public class WITCHFINAL : MonoBehaviour
 
             case EstadoBruja.PersecucionCercana:
             case EstadoBruja.PersecucionLejana:
-                // En ambos estados de persecución, su destino directo es el jugador
                 agent.destination = playerTR.position;
                 break;
+        }
+    }
+
+    // =================================================================
+    // GESTIÓN DE AUDIO
+    // =================================================================
+    private void AsignarClipsDeAudio()
+    {
+        // Asignamos el clip de susto al primer AudioSource
+        if (audioDeteccion != null && clipDeteccion != null)
+        {
+            audioDeteccion.clip = clipDeteccion;
+            audioDeteccion.loop = false; // El susto NO va en bucle
+            audioDeteccion.playOnAwake = false;
+        }
+
+        // Asignamos el clip de música al segundo AudioSource y lo ponemos en bucle
+        if (musicaPersecucion != null && clipMusicaPersecucion != null)
+        {
+            musicaPersecucion.clip = clipMusicaPersecucion;
+            musicaPersecucion.loop = true; // La persecución SÍ va en bucle
+            musicaPersecucion.playOnAwake = false;
+            musicaPersecucion.Stop(); // Nos aseguramos de que empiece apagada
+        }
+    }
+
+    private void ActivarAudiosPersecucion()
+    {
+        if (audioDeteccion != null && !audioDeteccion.isPlaying)
+        {
+            audioDeteccion.Play();
+        }
+
+        if (musicaPersecucion != null && !musicaPersecucion.isPlaying)
+        {
+            musicaPersecucion.Play();
+        }
+    }
+
+    private void DesactivarAudiosPersecucion()
+    {
+        if (musicaPersecucion != null && musicaPersecucion.isPlaying)
+        {
+            musicaPersecucion.Stop();
+        }
+
+        if (audioDeteccion != null && audioDeteccion.isPlaying)
+        {
+            audioDeteccion.Stop();
         }
     }
 
@@ -170,6 +223,9 @@ public class WITCHFINAL : MonoBehaviour
     {
         if (other.CompareTag("PLAYER"))
         {
+            // Apagamos todo el ruido de persecución antes del screamer
+            DesactivarAudiosPersecucion();
+
             if (screamer != null) screamer.SetActive(true);
 
             for (int i = 0; i < ToDestroy.Length; i++)

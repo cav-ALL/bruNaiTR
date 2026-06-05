@@ -5,6 +5,7 @@ using UnityEngine;
 public class BrujaController : MonoBehaviour
 {
     [SerializeField] private GameManager gameScript;
+    [SerializeField] private GameObject aviso;
     public bool onMouse = false;
 
     // --- NUEVAS VARIABLES ---
@@ -63,11 +64,13 @@ public class BrujaController : MonoBehaviour
     private void OnMouseEnter()
     {
         gameScript.pointerColor(0);
+        aviso.SetActive(true);
     }
 
     private void OnMouseExit()
     {
         gameScript.pointerColor(1);
+        aviso.SetActive(false);
     }
 }
 

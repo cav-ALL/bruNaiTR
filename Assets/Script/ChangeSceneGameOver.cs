@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class ChangeSceneGameOver : MonoBehaviour
@@ -10,9 +11,9 @@ public class ChangeSceneGameOver : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Jump"))
+            SceneManager.LoadScene(1);
     }
 }
