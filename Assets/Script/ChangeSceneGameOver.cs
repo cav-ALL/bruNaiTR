@@ -14,6 +14,6 @@ public class ChangeSceneGameOver : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
     }
 }

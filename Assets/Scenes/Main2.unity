@@ -52648,7 +52648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1001865956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55754,7 +55754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f9264ce36807b4d8791b8c6b96a30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneIndex: 3
+  gameOverSceneIndex: 4
   waitTime: 2
 --- !u!1001 &1064467312
 PrefabInstance:
@@ -56298,7 +56298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c9745ad6e72bc44aacb609577fd458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 2
+  scene: 3
 --- !u!1 &1070180565
 GameObject:
   m_ObjectHideFlags: 0
@@ -59397,7 +59397,7 @@ MonoBehaviour:
   - {fileID: 1184515491}
   - {fileID: 1235215595}
   - {fileID: 820344412}
-  tiempoEspera: 20
+  tiempoEspera: 30
 --- !u!1 &1144957372
 GameObject:
   m_ObjectHideFlags: 0
@@ -113984,11 +113984,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguesWitch:
-  - Recolecta esto por mi
-  - 1 daga y 1 amuleto
+  - 'Recolecta esto por mi '
+  - Si lo haces traere a tu hija de vuelta
   dialouguesText: {fileID: 430571780}
   index: 0
-  speedText: -0.72
+  speedText: 0.1
   witchStatickScript: {fileID: 1830085960}
   pointer: {fileID: 308138036}
   colors:
