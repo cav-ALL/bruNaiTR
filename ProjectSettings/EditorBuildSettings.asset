@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalDemo.unity
     guid: 2268d104a02fce0428c7669291dab746
+  - enabled: 1
+    path: Assets/Scenes/GAME OVER.unity
+    guid: dc5cbb12ae222954ca760bd636a3a606
   m_configObjects: {}
