@@ -92,7 +92,7 @@ public class WITCHFINAL : MonoBehaviour
                 estadoActual = EstadoBruja.PersecucionLejana;
                 agent.speed = witchSpeedD;
 
-                if (volumeOff != null) volumeOff.SetActive(false);
+                if (volumeOff != null) volumeOff.SetActive(true);
                 if (horribleSphere != null) horribleSphere.SetActive(false);
             }
         }

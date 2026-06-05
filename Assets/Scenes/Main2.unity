@@ -5841,7 +5841,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.01, z: 0}
-  m_LocalScale: {x: 48.36631, y: 48.36631, z: 48.36631}
+  m_LocalScale: {x: 245.02673, y: 245.02673, z: 245.02673}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2144172754}
@@ -101181,7 +101181,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.01, z: 0}
-  m_LocalScale: {x: 10.295146, y: 10.295146, z: 10.295146}
+  m_LocalScale: {x: 52.155853, y: 52.155853, z: 52.155853}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2144172754}
@@ -110015,7 +110015,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 14
+  m_Speed: 9
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 350
@@ -116909,9 +116909,9 @@ MonoBehaviour:
   - {fileID: 1979394832}
   - {fileID: 673854882}
   - {fileID: 64911432}
-  rangoDeteccionCercana: 10
-  rangoPatrullaNormal: 20
-  rangoPersecucionLejana: 40
+  rangoDeteccionCercana: 30
+  rangoPatrullaNormal: 60
+  rangoPersecucionLejana: 80
   witchSpeedP: 10
   witchSpeedD: 14
   volumeOff: {fileID: 1001865955}
@@ -117408,6 +117408,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 755088462271455136, guid: d844835aa3dade1409be572191518c32, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 52.155853
+      objectReference: {fileID: 0}
+    - target: {fileID: 755088462271455136, guid: d844835aa3dade1409be572191518c32, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 52.155853
+      objectReference: {fileID: 0}
+    - target: {fileID: 755088462271455136, guid: d844835aa3dade1409be572191518c32, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 52.155853
+      objectReference: {fileID: 0}
     - target: {fileID: 1495082473995983814, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: playerTR
       value: 
@@ -117442,11 +117454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495082473995983814, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: rangoPatrullaNormal
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1495082473995983814, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: rangoDeteccionCercana
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1495082473995983814, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: Patrulla.Array.data[0]
@@ -117466,7 +117478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495082473995983814, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: rangoPersecucionLejana
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1495082473995983814, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: ToDestroy.Array.data[0]
@@ -117478,15 +117490,15 @@ PrefabInstance:
       objectReference: {fileID: 2074780567}
     - target: {fileID: 3807556940955662437, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: m_LocalScale.x
-      value: 48.36631
+      value: 245.02673
       objectReference: {fileID: 0}
     - target: {fileID: 3807556940955662437, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: m_LocalScale.y
-      value: 48.36631
+      value: 245.02673
       objectReference: {fileID: 0}
     - target: {fileID: 3807556940955662437, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: m_LocalScale.z
-      value: 48.36631
+      value: 245.02673
       objectReference: {fileID: 0}
     - target: {fileID: 7461372269617304007, guid: d844835aa3dade1409be572191518c32, type: 3}
       propertyPath: m_Name
